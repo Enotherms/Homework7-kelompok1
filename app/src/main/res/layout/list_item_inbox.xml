@@ -1,0 +1,16 @@
+<!-- res/layout/list_item_inbox.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- Add views for each item in your inbox list -->
+    <TextView
+        android:id="@+id/textViewInListItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:padding="8dp"/>
+
+</LinearLayout>

@@ -1,22 +1,22 @@
 package com.example.bankapp;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link InboxFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class InboxFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private RecyclerView recyclerView;
+    private InboxAdapter adapter;
+    private List<String> inboxItems;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -58,7 +58,23 @@ public class InboxFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inbox, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_inbox, container, false);
+
+        recyclerView = rootView.findViewById(R.id.recyclerViewInbox);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        // Initialize your inbox items list
+        inboxItems = new ArrayList<>();
+
+        // Example data (replace with your inbox data)
+        inboxItems.add("Message 1");
+        inboxItems.add("Message 2");
+        inboxItems.add("Message 3");
+
+        // Create an adapter and set it to the RecyclerView
+        adapter = new InboxAdapter(inboxItems);
+        recyclerView.setAdapter(adapter);
+
+        return rootView;
     }
 }
