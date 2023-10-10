@@ -1,4 +1,4 @@
-package com.example.bankapp;
+package com.example.bankapp.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.bankapp.R;
 
 public class GridAdapter extends BaseAdapter {
 
@@ -51,7 +53,7 @@ public class GridAdapter extends BaseAdapter {
         TextView textView2 = convertView.findViewById(R.id.item_money);
 
         textView.setText(pocketName[position]);
-        textView.setText(moneyName[position]);
+        textView2.setText(moneyName[position]);
 
         return convertView;
     }

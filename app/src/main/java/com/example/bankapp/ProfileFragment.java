@@ -1,12 +1,23 @@
 package com.example.bankapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.example.bankapp.adapter.ProfileAdapter;
+import com.example.bankapp.model.MInbox;
+import com.example.bankapp.model.MProfile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +25,10 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+
+    private RecyclerView recyclerView;
+    private ProfileAdapter adapter;
+    private List<MProfile> profileItems;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,7 +73,30 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        recyclerView = rootView.findViewById(R.id.recyclerViewProfile);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        profileItems = new ArrayList<MProfile>();
+
+        profileItems.add(new MProfile(R.drawable.personalcard,"Personal Data"));
+        profileItems.add(new MProfile(R.drawable.setting,"Settings"));
+
+        // Create an adapter and set it to the RecyclerView
+        adapter = new ProfileAdapter(profileItems);
+        recyclerView.setAdapter(adapter);
+
+        Button LogoutButton = rootView.findViewById(R.id.logoutButton);
+        LogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Start LoginActivity when the button is clicked
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        return rootView;
     }
 }

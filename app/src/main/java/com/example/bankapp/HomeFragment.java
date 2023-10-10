@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +22,10 @@ import android.widget.Button;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+
+    EditText Balance;
+    ImageButton ShowHideButton;
+    private boolean isTextVisible = true;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,10 +68,27 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        Balance = view.findViewById(R.id.balance);
+        ShowHideButton = view.findViewById(R.id.showHideButton);
+
+        ShowHideButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isTextVisible = !isTextVisible;
+
+                if (isTextVisible) {
+                    Balance.setTransformationMethod(null);
+                } else {
+                    Balance.setTransformationMethod(new PasswordTransformationMethod());
+                }
+                Balance.setSelection(Balance.getText().length());
+            }
+        });
+
+        return view;
     }
 
     @Override

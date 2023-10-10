@@ -1,6 +1,5 @@
 package com.example.bankapp;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,10 +8,10 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.example.bankapp.adapter.GridAdapter;
 import com.example.bankapp.databinding.FragmentPocketBinding;
 
 /**
@@ -93,11 +92,11 @@ public class PocketFragment extends Fragment {
                 isTextVisible = !isTextVisible;
 
                 if (isTextVisible) {
-                    Balance.setTransformationMethod(null);
+                    binding.balancePocket.setTransformationMethod(null);
                 } else {
-                    Balance.setTransformationMethod(new PasswordTransformationMethod());
+                    binding.balancePocket.setTransformationMethod(new PasswordTransformationMethod());
                 }
-                Balance.setSelection(Balance.getText().length());
+                binding.balancePocket.setSelection(binding.balancePocket.getText().length());
             }
         });
 

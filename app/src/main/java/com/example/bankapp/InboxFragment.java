@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bankapp.adapter.InboxAdapter;
 import com.example.bankapp.model.MInbox;
 
 import java.util.ArrayList;
@@ -69,10 +69,6 @@ public class InboxFragment extends Fragment {
         // Initialize your inbox items list
         inboxItems = new ArrayList<MInbox>();
 
-        // Example data (replace with your inbox data)
-//        inboxItems.add("Message 1");
-//        inboxItems.add("Message 2");
-//        inboxItems.add("Message 3");
         inboxItems.add(new MInbox("Apriyani Penisa Damayanti","you have messages...."));
         inboxItems.add(new MInbox("Taufiqu Rahman","you have messages...."));
         inboxItems.add(new MInbox("Abiyyu Dhiyaul Haq","you have messages...."));

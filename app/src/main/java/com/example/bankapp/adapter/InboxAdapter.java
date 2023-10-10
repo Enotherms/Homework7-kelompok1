@@ -1,4 +1,4 @@
-package com.example.bankapp;
+package com.example.bankapp.adapter;
 
 
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bankapp.R;
 import com.example.bankapp.model.MInbox;
 
 import java.util.List;
