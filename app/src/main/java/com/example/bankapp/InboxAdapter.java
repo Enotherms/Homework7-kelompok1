@@ -7,13 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.bankapp.model.MInbox;
+
 import java.util.List;
 
 public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.ViewHolder> {
 
-    private List<String> inboxItems;
+    private List<MInbox> inboxItems;
 
-    public InboxAdapter(List<String> inboxItems) {
+    public InboxAdapter(List<MInbox> inboxItems) {
         this.inboxItems = inboxItems;
 
     }
@@ -23,14 +26,15 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_inbox, parent, false);
+                .inflate(R.layout.inbox_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String item = inboxItems.get(position);
-        holder.textView.setText(item);
+        MInbox item = inboxItems.get(position);
+        holder.inboxName.setText(item.getInboxName());
+        holder.inboxMessage.setText(item.getInboxMsg());
     }
 
     @Override
@@ -39,11 +43,13 @@ public class InboxAdapter extends RecyclerView.Adapter<InboxAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
+        TextView inboxName;
+        TextView inboxMessage;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.textViewInListItem);
+            inboxName = itemView.findViewById(R.id.inbox_name);
+            inboxMessage = itemView.findViewById(R.id.inbox_message);
         }
     }
 }

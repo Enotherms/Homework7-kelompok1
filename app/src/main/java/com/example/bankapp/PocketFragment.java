@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.example.bankapp.databinding.FragmentPocketBinding;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PocketFragment#newInstance} factory method to
@@ -23,6 +25,7 @@ public class PocketFragment extends Fragment {
     EditText Balance;
     ImageButton ShowHideButton;
     private boolean isTextVisible = true;
+    private FragmentPocketBinding binding;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,11 +72,20 @@ public class PocketFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_pocket, container, false);
-        Balance = view.findViewById(R.id.balancePocket);
+
+        binding = FragmentPocketBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+
         ShowHideButton = (ImageButton) view.findViewById(R.id.showHideButtonPocket);
-        Balance.setClickable(false);
-        Balance.setFocusable(false);
+
+        binding.balancePocket.setClickable(false);
+        binding.balancePocket.setFocusable(false);
+
+        String[] pocketName = {"Main Pocket", "Travelling", "Social", "Savings", "Investment"};
+        String[] pocketMoney ={"Rp. 250.000", "Rp. 100.000", "Rp. 250.000", "Rp. 200.000", "Rp. 200.000"};
+
+        GridAdapter gridAdapter = new GridAdapter(requireContext(), pocketName, pocketMoney);
+        binding.gridView.setAdapter(gridAdapter);
 
         ShowHideButton.setOnClickListener(new View.OnClickListener() {
             @Override

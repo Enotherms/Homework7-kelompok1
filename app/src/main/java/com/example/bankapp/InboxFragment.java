@@ -9,6 +9,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.bankapp.model.MInbox;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +19,7 @@ public class InboxFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private InboxAdapter adapter;
-    private List<String> inboxItems;
+    private List<MInbox> inboxItems;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -64,12 +67,22 @@ public class InboxFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         // Initialize your inbox items list
-        inboxItems = new ArrayList<>();
+        inboxItems = new ArrayList<MInbox>();
 
         // Example data (replace with your inbox data)
-        inboxItems.add("Message 1");
-        inboxItems.add("Message 2");
-        inboxItems.add("Message 3");
+//        inboxItems.add("Message 1");
+//        inboxItems.add("Message 2");
+//        inboxItems.add("Message 3");
+        inboxItems.add(new MInbox("Apriyani Penisa Damayanti","you have messages...."));
+        inboxItems.add(new MInbox("Taufiqu Rahman","you have messages...."));
+        inboxItems.add(new MInbox("Abiyyu Dhiyaul Haq","you have messages...."));
+        inboxItems.add(new MInbox("M. Nasirudianto","you have messages...."));
+        inboxItems.add(new MInbox("Charish Trisuard","you have messages...."));
+        inboxItems.add(new MInbox("Gregoria Mariana S","you have messages...."));
+        inboxItems.add(new MInbox("Decynta Putry","you have messages...."));
+        inboxItems.add(new MInbox("Oktavia Rahmadiana","you have messages...."));
+        inboxItems.add(new MInbox("Bendri Sepriadi Z","you have messages...."));
+        inboxItems.add(new MInbox("M. Ilham Kurniawan","you have messages...."));
 
         // Create an adapter and set it to the RecyclerView
         adapter = new InboxAdapter(inboxItems);
