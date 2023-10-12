@@ -1,9 +1,15 @@
 package com.example.bankapp;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.viewmodel.CreationExtras;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,9 +17,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.bankapp.adapter.ProfileAdapter;
 import com.example.bankapp.model.MInbox;
+import com.example.bankapp.model.MPersonalData;
 import com.example.bankapp.model.MProfile;
 
 import java.util.ArrayList;
@@ -24,11 +32,15 @@ import java.util.List;
  * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements RecyclerViewInterface {
 
     private RecyclerView recyclerView;
     private ProfileAdapter adapter;
     private List<MProfile> profileItems;
+    private ArrayList<MPersonalData> personalData = new ArrayList<>();
+    TextView ProfileName;
+    String email;
+    String username;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,6 +87,12 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        ProfileName = rootView.findViewById(R.id.profile_name);
+
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        String name = sharedPreferences.getString("name", "");
+        ProfileName.setText(name);
+
         recyclerView = rootView.findViewById(R.id.recyclerViewProfile);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -84,7 +102,7 @@ public class ProfileFragment extends Fragment {
         profileItems.add(new MProfile(R.drawable.setting,"Settings"));
 
         // Create an adapter and set it to the RecyclerView
-        adapter = new ProfileAdapter(profileItems);
+        adapter = new ProfileAdapter(profileItems, ProfileFragment.this, ProfileFragment.this);
         recyclerView.setAdapter(adapter);
 
         Button LogoutButton = rootView.findViewById(R.id.logoutButton);
@@ -98,5 +116,14 @@ public class ProfileFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+
+    @Override
+    public void onItemClick(int position) {
+
+        Intent intent = new Intent(getActivity(), EditProfileActivity.class);
+
+        startActivity(intent);
     }
 }

@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:padding="30px"
         android:layout_marginTop="25px"
-        android:layout_marginLeft="950px"
+        android:layout_marginLeft="900px"
         android:background="@drawable/arrowright"/>
 
 

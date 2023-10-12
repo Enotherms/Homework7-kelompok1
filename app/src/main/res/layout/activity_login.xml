@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginbkg"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:layout_width="475dp"
+        android:layout_height="798dp"
+        android:background="@drawable/loginbkg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:id="@+id/cardView"
+        android:layout_width="346dp"
+        android:layout_height="346dp"
+        android:layout_marginBottom="112dp"
         android:background="@drawable/custom_edittext"
         app:cardCornerRadius="30dp"
-        app:cardElevation="20dp">
+        app:cardElevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="378dp"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="24dp">
@@ -44,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/custom_edittext2"
                 android:drawableLeft="@drawable/baseline_person_24"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/montserrat_light"
@@ -58,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/custom_edittext"
+                android:background="@drawable/custom_edittext2"
                 android:drawableLeft="@drawable/baseline_lock_24"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/montserrat_light"
@@ -85,7 +96,13 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.451">
 
         <TextView
             android:layout_width="wrap_content"
@@ -113,4 +130,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

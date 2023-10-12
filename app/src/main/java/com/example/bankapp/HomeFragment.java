@@ -1,5 +1,9 @@
 package com.example.bankapp;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +30,7 @@ public class HomeFragment extends Fragment {
 
     EditText Balance;
     ImageButton ShowHideButton;
+    TextView HomeName;
     private boolean isTextVisible = true;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -61,10 +67,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -73,7 +75,12 @@ public class HomeFragment extends Fragment {
 
         Balance = view.findViewById(R.id.balance);
         ShowHideButton = view.findViewById(R.id.showHideButton);
+        HomeName = view.findViewById(R.id.home_name);
 
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        String name = sharedPreferences.getString("name", "");
+
+        HomeName.setText(name);
         ShowHideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,6 +101,5 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 }

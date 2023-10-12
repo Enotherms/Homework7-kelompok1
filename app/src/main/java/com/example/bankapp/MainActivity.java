@@ -8,20 +8,31 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.bankapp.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.nio.BufferUnderflowException;
+
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    String username;
+    String email;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        username = getIntent().getStringExtra("Username_Extra");
+        email = getIntent().getStringExtra("Email_Extra");
         replaceFragment(new HomeFragment());
 
         binding.bottomNavigationView.setOnItemSelectedListener( item -> {
